@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tapCount = 0
+    @State private var name = ""
     var body: some View {
-        NavigationStack{
-            Form{
-                Text("HELLO WORLD")
-                Button("tap count: \(tapCount)"){
-                    tapCount += 1
-                }
-            }
-            .navigationTitle("SwiftUI")
-            .navigationBarTitleDisplayMode(.inline)
+        Form{
+            TextField("Enter your name", text: $name) //two-way binding: the value is read, but also written back
+            Text("your name is: \(name)")
         }
         
     }
