@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    let students = ["Joe", "Jonn", "Jeff"]
-    @State private var selectedStudent = "Joe"
+    
+    @State private var checkAmount = 0.0
+    @State private var numberOfPeople = 2
+    @State private var tipPercentage = 20
+    
+    let tipPercentages = [0, 10, 15, 20]
     var body: some View {
         NavigationStack{
             Form{
-                Picker("select your student",selection: $selectedStudent){
-                    ForEach(students, id: \.self){
-                        // the id: \.self means the strings in the array are each unique and thus assigns a unique identifier to each student
-                        Text($0)
-                    }
+                Section{
+                    TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .keyboardType(.decimalPad)
+                }
+                
+                Section{
+                    Text(checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
             }
         }
